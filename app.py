@@ -5,7 +5,7 @@ from rag import create_vectorstore
 from rag import load_vectorstore
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-GOOGLE_API_KEY = st.secrets["AQ.Ab8RN6IRkiJ9jGtQO1OIg7VhZRxxJmaFuAZDsFw6nwaPA_k9-Q"]
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
