@@ -14,7 +14,11 @@ def create_vectorstore(folder_path):
 
             loader = PyPDFLoader(pdf_path)
             docs = loader.load()
+
             all_docs.extend(docs)
+
+    if len(all_docs) == 0:
+        raise Exception("No text found in PDFs.")
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
@@ -23,12 +27,20 @@ def create_vectorstore(folder_path):
 
     chunks = splitter.split_documents(all_docs)
 
+    if len(chunks) == 0:
+        raise Exception("No chunks created from PDFs.")
+
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    vectorstore = FAISS.from_documents(
-        chunks,
+    texts = [doc.page_content for doc in chunks]
+
+    if len(texts) == 0:
+        raise Exception("No text extracted.")
+
+    vectorstore = FAISS.from_texts(
+        texts,
         embeddings
     )
 
