@@ -9,7 +9,7 @@ GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    google_api_key=AQ."Ab8RN6IRkiJ9jGtQO1OIg7VhZRxxJmaFuAZDsFw6nwaPA_k9-Q"
+    google_api_key="AQ.Ab8RN6IRkiJ9jGtQO1OIg7VhZRxxJmaFuAZDsFw6nwaPA_k9-Q"
 )
 
 st.title("🎓 GenAI Learning Mentor")
